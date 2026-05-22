@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mattos Medical Group · Tampa, FL · Atención primaria, IV, BHRT, Medicina Regenerativa</title>
+<meta name="description" content="Clínica médica bilingüe en Tampa, FL. Atención primaria, terapia IV, BHRT, medicina regenerativa, pérdida de peso y accidentes de auto. Más de 28 años sirviendo a familias.">
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--mmg-font-body);background:var(--mmg-off-white);color:var(--mmg-text);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* ── VITRUVIAN — fixed page watermark, single instance ── */
+.vitruvian-watermark{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:min(90vw,620px);height:min(90vw,620px);pointer-events:none;z-index:1;}
+.vitruvian-watermark img{width:100%;height:100%;object-fit:contain;opacity:0.06;mix-blend-mode:multiply;}
+.page-wrap{position:relative;z-index:2;}
+
+/* ── MOTION ──
+   Brand rule: subtle fades + small lifts. No bounce, no spring, no parallax. */
+@keyframes mmgFadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes mmgFadeDown{from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);}}
+@keyframes mmgFadeIn{from{opacity:0;}to{opacity:1;}}
+
+/* Hero — staggered on load (no JS needed) */
+.hero-eyebrow{animation:mmgFadeDown .6s var(--mmg-ease-out) both;animation-delay:.05s;}
+.hero h1{animation:mmgFadeDown .75s var(--mmg-ease-out) both;animation-delay:.18s;}
+.hero-sub{animation:mmgFadeDown .8s var(--mmg-ease-out) both;animation-delay:.30s;}
+.hero-ctas{animation:mmgFadeUp .8s var(--mmg-ease-out) both;animation-delay:.42s;}
+.hero-note{animation:mmgFadeIn .8s var(--mmg-ease-out) both;animation-delay:.55s;}
+.hero-wm{animation:mmgFadeIn 1.2s var(--mmg-ease-out) both;animation-delay:.10s;}
+
+/* Reveal-on-scroll — IntersectionObserver toggles .in-view */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--mmg-ease-out),transform .7s var(--mmg-ease-out);will-change:opacity,transform;}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s var(--mmg-ease-out),transform .6s var(--mmg-ease-out);}
+.reveal-stagger.in-view > *{opacity:1;transform:translateY(0);}
+.reveal-stagger.in-view > *:nth-child(1){transition-delay:.00s;}
+.reveal-stagger.in-view > *:nth-child(2){transition-delay:.07s;}
+.reveal-stagger.in-view > *:nth-child(3){transition-delay:.14s;}
+.reveal-stagger.in-view > *:nth-child(4){transition-delay:.21s;}
+.reveal-stagger.in-view > *:nth-child(5){transition-delay:.28s;}
+.reveal-stagger.in-view > *:nth-child(6){transition-delay:.35s;}
+.reveal-stagger.in-view > *:nth-child(7){transition-delay:.42s;}
+.reveal-stagger.in-view > *:nth-child(8){transition-delay:.49s;}
+.reveal-stagger.in-view > *:nth-child(9){transition-delay:.56s;}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  .hero-eyebrow,.hero h1,.hero-sub,.hero-ctas,.hero-note,.hero-wm{animation:none;}
+  .reveal,.reveal-stagger > *{opacity:1;transform:none;transition:none;}
+}
+img{max-width:100%;display:block;}
+a{color:inherit;}
+
+/* ── BILINGUAL SWAP ── */
+[data-lang="en"]{display:none;}
+body.en [data-lang="es"]{display:none;}
+body.en [data-lang="en"]{display:initial;}
+body.en span[data-lang="en"],body.en a[data-lang="en"]{display:inline;}
+body.en div[data-lang="en"],body.en li[data-lang="en"],body.en p[data-lang="en"],body.en h1[data-lang="en"],body.en h2[data-lang="en"],body.en h3[data-lang="en"]{display:block;}
+
+/* ── LANG BAR ── */
+.lang-bar{background:var(--mmg-navy);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,0.65);flex-wrap:wrap;}
+.lang-bar a{color:var(--mmg-blue-light);text-decoration:none;font-weight:600;}
+.lang-bar .lb-meta{color:rgba(255,255,255,0.4);}
+.lang-toggles{display:flex;gap:6px;}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.6);padding:5px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-family:inherit;letter-spacing:0.8px;}
+.lang-btn.active{background:var(--mmg-blue);border-color:var(--mmg-blue);color:#fff;font-weight:700;}
+
+/* ── NAV ── */
+.nav{background:#fff;border-bottom:1px solid var(--mmg-border);padding:14px 22px;display:flex;align-items:center;gap:22px;position:sticky;top:0;z-index:100;box-shadow:0 1px 0 rgba(11,30,61,0.04);}
+.nav-brand{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none;line-height:1;gap:4px;}
+.nav-logo{height:38px;width:auto;}
+.nav-tagline{font-size:9.5px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--mmg-blue);padding-left:2px;}
+.nav-links{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;font-weight:600;letter-spacing:0.3px;}
+.nav-links a{text-decoration:none;color:var(--mmg-navy);padding:6px 0;border-bottom:2px solid transparent;transition:border-color .2s;}
+.nav-links a:hover{border-bottom-color:var(--mmg-blue);}
+.nav-cta{margin-left:auto;background:var(--mmg-grad-cta);color:#fff;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:700;text-decoration:none;box-shadow:var(--mmg-shadow-blue);transition:transform .25s var(--mmg-ease-out);}
+.nav-cta:hover{transform:translateY(-2px);}
+@media(max-width:760px){.nav-links{display:none;}.nav{gap:14px;}}
+
+/* ── HERO ── */
+.hero{background:var(--mmg-grad-hero);padding:72px 22px 80px;text-align:center;position:relative;overflow:hidden;color:#fff;}
+.hero::before{content:'';position:absolute;top:-90px;right:-90px;width:360px;height:360px;background:radial-gradient(circle,rgba(38,120,192,0.14),transparent 70%);border-radius:50%;}
+.hero::after{content:'';position:absolute;bottom:-70px;left:-70px;width:300px;height:300px;background:radial-gradient(circle,rgba(74,148,214,0.10),transparent 70%);border-radius:50%;}
+.hero-wm{display:none;}
+.hero > *:not(.hero-wm){position:relative;z-index:2;}
+.hero-eyebrow{font-size:11px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;color:var(--mmg-blue-light);margin-bottom:14px;}
+.hero h1{font-family:var(--mmg-font-display);font-weight:900;font-size:clamp(34px,7vw,60px);line-height:1.05;margin:0 auto 18px;max-width:880px;}
+.hero h1 em{color:var(--mmg-blue-light);font-style:italic;font-weight:700;display:block;}
+.hero-sub{font-size:clamp(15px,3vw,18px);color:rgba(255,255,255,0.72);font-weight:300;line-height:1.55;max-width:620px;margin:0 auto 32px;}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+.cta-primary{display:inline-block;background:var(--mmg-grad-cta);color:#fff;padding:16px 34px;border-radius:50px;font-size:15px;font-weight:700;text-decoration:none;letter-spacing:0.4px;box-shadow:var(--mmg-shadow-blue);transition:transform .25s,box-shadow .25s;}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:var(--mmg-shadow-blue-lg);}
+.cta-ghost{display:inline-block;color:#fff;padding:16px 26px;border-radius:50px;font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,0.28);transition:background .2s;}
+.cta-ghost:hover{background:rgba(255,255,255,0.08);}
+.hero-note{font-size:13px;color:rgba(255,255,255,0.4);letter-spacing:0.3px;}
+
+/* ── SERVICE TILES (the 4-card hero ribbon from live site) ── */
+.tiles{background:#fff;border-bottom:1px solid var(--mmg-border);padding:36px 22px;}
+.tiles-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+@media(max-width:900px){.tiles-inner{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.tiles-inner{grid-template-columns:1fr;}}
+.tile{background:#fff;border:1px solid var(--mmg-border);border-left:3px solid var(--mmg-blue);border-radius:14px;padding:22px;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s,border-left-color .25s;display:flex;flex-direction:column;gap:8px;min-height:170px;}
+.tile:hover{transform:translateY(-3px);box-shadow:var(--mmg-shadow-md);border-left-color:var(--mmg-blue-light);}
+.tile-title{font-family:var(--mmg-font-display);font-size:20px;font-weight:700;color:var(--mmg-navy);line-height:1.2;}
+.tile-desc{font-size:13px;color:var(--mmg-text-muted);line-height:1.55;flex:1;}
+.tile-link{font-size:12px;font-weight:700;color:var(--mmg-blue);letter-spacing:0.5px;text-transform:uppercase;display:flex;align-items:center;gap:4px;}
+
+/* ── SECTIONS ── */
+.section{padding:72px 22px;}
+.section.alt{background:#fff;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-narrow{max-width:760px;margin:0 auto;}
+.eyebrow{font-size:11px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;color:var(--mmg-blue);margin-bottom:10px;}
+.section h2{font-family:var(--mmg-font-display);font-size:clamp(26px,4.5vw,40px);font-weight:700;color:var(--mmg-navy);line-height:1.15;margin-bottom:14px;}
+.section h2 em{color:var(--mmg-blue);font-style:italic;font-weight:700;}
+.section .lead{font-size:16px;color:var(--mmg-text-muted);font-weight:300;line-height:1.7;margin-bottom:30px;max-width:680px;}
+
+/* ── ABOUT SPLIT ── */
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+@media(max-width:820px){.about-split{grid-template-columns:1fr;gap:32px;}}
+.about-photo{border-radius:16px;overflow:hidden;box-shadow:var(--mmg-shadow-md);aspect-ratio:4/3;background:var(--mmg-cream) center/cover no-repeat;}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px;}
+.about-stat{padding:16px 0;border-top:2px solid var(--mmg-blue);}
+.about-stat-num{font-family:var(--mmg-font-display);font-size:32px;font-weight:900;color:var(--mmg-navy);line-height:1;}
+.about-stat-lbl{font-size:11px;letter-spacing:1.2px;font-weight:700;text-transform:uppercase;color:var(--mmg-text-muted);margin-top:6px;}
+
+/* ── SERVICES GRID ── */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px;}
+@media(max-width:820px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.svc-grid{grid-template-columns:1fr;}}
+.svc-card{background:var(--mmg-off-white);border:1px solid var(--mmg-border);border-top:3px solid var(--mmg-blue);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:transform .25s,box-shadow .25s,border-top-color .25s;}
+.svc-card:hover{transform:translateY(-3px);box-shadow:var(--mmg-shadow-md);border-top-color:var(--mmg-blue-light);}
+.svc-card h3{font-family:var(--mmg-font-display);font-size:18px;font-weight:700;color:var(--mmg-navy);line-height:1.2;}
+.svc-card p{font-size:13px;color:var(--mmg-text-muted);line-height:1.55;flex:1;}
+.svc-card .meta{font-size:11px;letter-spacing:1.2px;font-weight:700;text-transform:uppercase;color:var(--mmg-blue);display:flex;align-items:center;gap:5px;margin-top:4px;}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:linear-gradient(135deg,#0b1e3d 0%,#1a3a6b 100%);color:#fff;padding:38px 22px;}
+.trust-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;}
+@media(max-width:760px){.trust-strip-inner{grid-template-columns:repeat(2,1fr);}}
+.trust-num{font-family:var(--mmg-font-display);font-size:38px;font-weight:900;color:var(--mmg-blue-light);line-height:1;}
+.trust-lbl{font-size:12px;letter-spacing:1.5px;font-weight:600;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:6px;}
+
+/* ── TESTIMONIALS ── */
+.tst-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:30px;}
+@media(max-width:760px){.tst-grid{grid-template-columns:1fr;}}
+.tst{background:#fff;border:1px solid var(--mmg-border);border-radius:14px;padding:24px 22px;}
+.tst-quote{font-family:var(--mmg-font-display);font-size:15px;font-style:italic;color:var(--mmg-text);line-height:1.65;}
+.tst-quote::before{content:'\201C';font-size:42px;color:var(--mmg-blue);line-height:0;vertical-align:-12px;margin-right:4px;}
+.tst-author{margin-top:14px;font-size:13px;font-weight:700;color:var(--mmg-navy);letter-spacing:0.3px;}
+.tst-stars{color:var(--mmg-gold);letter-spacing:2px;font-size:14px;margin-top:6px;}
+
+/* ── FAQ ── */
+.faq{margin-top:24px;}
+.faq-item{border-bottom:1px solid var(--mmg-border);}
+.faq-q{width:100%;background:none;border:none;color:var(--mmg-navy);text-align:left;padding:18px 0;font-family:var(--mmg-font-display);font-size:16px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+.faq-q:hover,.faq-item.open .faq-q{color:var(--mmg-blue);}
+.faq-chev{width:18px;height:18px;stroke:var(--mmg-blue);transition:transform .3s;flex-shrink:0;fill:none;stroke-width:2;}
+.faq-item.open .faq-chev{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:14px;color:var(--mmg-text-muted);line-height:1.7;}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:18px;}
+
+/* ── CONTACT BAND ── */
+.contact{background:var(--mmg-grad-hero);color:#fff;padding:64px 22px;text-align:center;position:relative;overflow:hidden;}
+.contact::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:radial-gradient(circle,rgba(38,120,192,0.16),transparent 70%);border-radius:50%;}
+.contact > *{position:relative;z-index:2;}
+.contact .eyebrow{color:var(--mmg-blue-light);}
+.contact h2{color:#fff;margin-bottom:14px;}
+.contact h2 em{color:var(--mmg-blue-light);}
+.contact .lead{color:rgba(255,255,255,0.7);margin:0 auto 26px;}
+.contact-lines{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:26px;}
+.contact-lines a{color:var(--mmg-blue-light);text-decoration:none;font-weight:600;}
+
+/* ── FOOTER ── */
+footer{background:var(--mmg-navy);color:rgba(255,255,255,0.55);padding:48px 22px 24px;font-size:13px;}
+.foot-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:32px;}
+@media(max-width:900px){.foot-inner{grid-template-columns:1fr 1fr 1fr;}}
+@media(max-width:680px){.foot-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.foot-inner{grid-template-columns:1fr;}}
+.foot h4{font-size:11px;letter-spacing:1.5px;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:14px;}
+.foot a{color:rgba(255,255,255,0.55);text-decoration:none;display:block;padding:4px 0;}
+.foot a:hover{color:var(--mmg-blue-light);}
+.foot-logo{height:42px;mix-blend-mode:screen;margin-bottom:8px;}
+.foot-tagline{font-size:9.5px;font-weight:700;letter-spacing:2.4px;text-transform:uppercase;color:var(--mmg-blue-light);margin-bottom:14px;}
+.foot-bottom{max-width:1100px;margin:32px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,0.35);}
+.foot-qr{display:block;width:108px;height:108px;background:#fff;padding:8px;border-radius:10px;margin-bottom:10px;box-shadow:0 4px 12px rgba(0,0,0,0.20);transition:transform .2s var(--mmg-ease-out),box-shadow .2s;}
+.foot-qr:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.28);}
+.foot-qr img{width:100%;height:100%;object-fit:contain;display:block;}
+.foot-qr-label{display:block;font-family:var(--mmg-font-script);font-size:18px;font-weight:600;color:var(--mmg-blue-light);margin-top:2px;line-height:1.1;}
+</style>
+</head>
+<body>
+
+<!-- VITRUVIAN — fixed page watermark, single instance -->
+<div class="vitruvian-watermark" aria-hidden="true">
+  <img src="mmg-vitruvian.png" alt="">
+</div>
+
+<div class="page-wrap">
+
+<!-- ── LANG BAR ── -->
+<div class="lang-bar">
+  <div><a href="tel:+18138712950">813.871.2950</a> <span class="lb-meta">· <span data-lang="es">Lun–Vie 9A–5P · Sáb 9A–1P · Tampa, FL</span><span data-lang="en">Mon–Fri 9A–5P · Sat 9A–1P · Tampa, FL</span></span></div>
+  <div class="lang-toggles">
+    <button class="lang-btn active" data-set="es">ES</button>
+    <button class="lang-btn" data-set="en">EN</button>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="#top" class="nav-brand">
+    <img class="nav-logo" src="mmg-logo.png" alt="Mattos Medical Group">
+    <span class="nav-tagline"><span data-lang="es">Medicina Regenerativa · Tampa, FL</span><span data-lang="en">Regenerative Medicine · Tampa, FL</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#servicios"><span data-lang="es">Servicios</span><span data-lang="en">Services</span></a>
+    <a href="#nosotros"><span data-lang="es">Nosotros</span><span data-lang="en">About</span></a>
+    <a href="https://mattos-medical-group.github.io/mattos-bhrt/">BHRT</a>
+    <a href="https://mattos-medical-group.github.io/mattos-weightloss/"><span data-lang="es">Pérdida de Peso</span><span data-lang="en">Weight Loss</span></a>
+    <a href="https://mattos-medical-group.github.io/mmg-supplementservice-finder/" target="_blank" rel="noopener"><span data-lang="es">Suplementos</span><span data-lang="en">Supplements</span></a>
+    <a href="#faq">FAQ</a>
+    <a href="#contacto"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+  </div>
+  <a class="nav-cta" href="#contacto"><span data-lang="es">Reserva tu consulta</span><span data-lang="en">Book a consult</span></a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-eyebrow">Mattos Medical Group · Tampa, FL · 1997</div>
+  <h1>
+    <span data-lang="es">Medicina que <em>Transforma Vidas.</em></span>
+    <span data-lang="en">Medicine that <em>Transforms Lives.</em></span>
+  </h1>
+  <p class="hero-sub">
+    <span data-lang="es">Clínica bilingüe en Tampa con más de 28 años cuidando familias. Atención primaria, terapia IV, BHRT, medicina regenerativa, pérdida de peso y rehabilitación de accidentes — todo bajo un mismo techo.</span>
+    <span data-lang="en">A bilingual clinic in Tampa with 28+ years caring for families. Primary care, IV therapy, BHRT, regenerative medicine, weight loss, and accident rehabilitation — all under one roof.</span>
+  </p>
+  <div class="hero-ctas">
+    <a class="cta-primary" href="#contacto"><span data-lang="es">Reserva tu consulta gratuita</span><span data-lang="en">Book a free consult</span></a>
+    <a class="cta-ghost" href="tel:+18138712950">813.871.2950</a>
+  </div>
+  <div class="hero-note"><span data-lang="es">30 minutos · Sin compromiso · En tu idioma</span><span data-lang="en">30 minutes · No commitment · In your language</span></div>
+</section>
+
+<!-- ── 4 SERVICE TILES (matches live site's hero ribbon) ── -->
+<section class="tiles">
+  <div class="tiles-inner reveal-stagger">
+    <a class="tile" href="https://mattos-medical-group.github.io/mattos-oferta10/">
+      <div class="tile-title"><span data-lang="es">Terapia IV</span><span data-lang="en">IV Therapy</span></div>
+      <div class="tile-desc"><span data-lang="es">Fuente de la Juventud — 10% off por tiempo limitado. 25 nutrientes en una sola bolsa.</span><span data-lang="en">Fuente de la Juventud — 10% off limited time. 25 nutrients in one bag.</span></div>
+      <div class="tile-link"><span data-lang="es">Reclama 10% off</span><span data-lang="en">Claim 10% off</span> →</div>
+    </a>
+    <a class="tile" href="https://mattos-medical-group.github.io/mattos-bhrt/">
+      <div class="tile-title">BHRT</div>
+      <div class="tile-desc"><span data-lang="es">Terapia hormonal bioidéntica. Recupera energía, ánimo y enfoque mental.</span><span data-lang="en">Bioidentical hormone therapy. Restore energy, mood, and mental clarity.</span></div>
+      <div class="tile-link"><span data-lang="es">Ver página</span><span data-lang="en">View page</span> →</div>
+    </a>
+    <a class="tile" href="#regenerativa">
+      <div class="tile-title"><span data-lang="es">Medicina Regenerativa</span><span data-lang="en">Regenerative Medicine</span></div>
+      <div class="tile-desc"><span data-lang="es">Exosomas, PRP y PDO. Alivio sin cirugía para dolor articular y lesiones.</span><span data-lang="en">Exosomes, PRP, PDO. Pain relief without surgery for joints and injuries.</span></div>
+      <div class="tile-link"><span data-lang="es">Conoce más</span><span data-lang="en">Learn more</span> →</div>
+    </a>
+    <a class="tile" href="#accidentes">
+      <div class="tile-title"><span data-lang="es">Accidente de Auto</span><span data-lang="en">Auto Accident</span></div>
+      <div class="tile-desc"><span data-lang="es">¿Lesionado en un accidente? Evaluación médica especializada. PIP aceptado.</span><span data-lang="en">Injured in an accident? Specialized medical evaluation. PIP accepted.</span></div>
+      <div class="tile-link"><span data-lang="es">No esperes</span><span data-lang="en">Don't delay</span> →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="section" id="nosotros">
+  <div class="section-inner reveal">
+    <div class="about-split">
+      <div>
+        <div class="eyebrow"><span data-lang="es">Quiénes somos</span><span data-lang="en">Who we are</span></div>
+        <h2><span data-lang="es">Una Familia Cuidando <em>Familias.</em></span><span data-lang="en">A Family Caring for <em>Families.</em></span></h2>
+        <p class="lead">
+          <span data-lang="es">Desde julio de 1997, Mattos Medical Group ha atendido a familias del área de Tampa Bay con un enfoque integrador — combinando medicina occidental con filosofías orientales. Cuando entras por nuestras puertas no eres "otro paciente"; eres parte de nuestra familia extendida.</span>
+          <span data-lang="en">Since July 1997, Mattos Medical Group has served families across Tampa Bay with an integrative approach — combining Western medicine with Eastern philosophies. When you walk through our doors you're not just another patient — you're part of our extended family.</span>
+        </p>
+        <p class="lead">
+          <span data-lang="es">Tratamos las causas, no solo los síntomas. Dolor articular, salud digestiva, control de peso, sistema inmune, dolor crónico, antienvejecimiento, ansiedad y salud hormonal — todo con planes personalizados.</span>
+          <span data-lang="en">We treat root causes, not just symptoms. Joint pain, digestive health, weight management, immune support, chronic pain, anti-aging, anxiety, and hormonal health — all with personalized plans.</span>
+        </p>
+        <div class="about-stats">
+          <div class="about-stat"><div class="about-stat-num">28+</div><div class="about-stat-lbl"><span data-lang="es">Años en Tampa</span><span data-lang="en">Years in Tampa</span></div></div>
+          <div class="about-stat"><div class="about-stat-num">80+</div><div class="about-stat-lbl"><span data-lang="es">Productos Mattos Lab</span><span data-lang="en">Mattos Lab products</span></div></div>
+          <div class="about-stat"><div class="about-stat-num">15+</div><div class="about-stat-lbl"><span data-lang="es">Servicios</span><span data-lang="en">Services</span></div></div>
+        </div>
+      </div>
+      <div class="about-photo" style="background-image:url('img-board-room.png');"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST STRIP ── -->
+<section class="trust-strip">
+  <div class="trust-strip-inner reveal-stagger">
+    <div><div class="trust-num">1997</div><div class="trust-lbl"><span data-lang="es">Sirviendo desde</span><span data-lang="en">Serving since</span></div></div>
+    <div><div class="trust-num">100%</div><div class="trust-lbl"><span data-lang="es">Personal bilingüe</span><span data-lang="en">Bilingual staff</span></div></div>
+    <div><div class="trust-num">0</div><div class="trust-lbl"><span data-lang="es">Cirugías innecesarias</span><span data-lang="en">Unnecessary surgeries</span></div></div>
+    <div><div class="trust-num">$0</div><div class="trust-lbl"><span data-lang="es">Consulta inicial</span><span data-lang="en">First consult</span></div></div>
+  </div>
+</section>
+
+<!-- ── SERVICES GRID ── -->
+<section class="section alt" id="servicios">
+  <div class="section-inner reveal">
+    <div class="eyebrow"><span data-lang="es">Nuestros servicios</span><span data-lang="en">Our services</span></div>
+    <h2><span data-lang="es">Encuentra el Tratamiento <em>Correcto.</em></span><span data-lang="en">Find the <em>Right</em> Treatment.</span></h2>
+    <p class="lead"><span data-lang="es">Como alternativa a la cirugía y enfocados en la medicina regenerativa, dedicamos tiempo individualizado a entender las necesidades de cada paciente.</span><span data-lang="en">As an alternative to surgery and focused on regenerative medicine, we spend individualized time understanding each patient's needs.</span></p>
+
+    <div class="svc-grid reveal-stagger">
+      <a class="svc-card" href="https://mattos-medical-group.github.io/mattos-oferta10/" id="iv">
+        <h3><span data-lang="es">Terapia IV Nutricional</span><span data-lang="en">IV Nutritional Therapy</span></h3>
+        <p><span data-lang="es">Fuente de la Juventud, NAD, alta dosis de vitamina C, recuperación atlética, Brain Boost, alivio de migraña y más de 14 fórmulas.</span><span data-lang="en">Fuente de la Juventud, NAD, high-dose vitamin C, athletic recovery, Brain Boost, migraine relief, and 14+ formulas.</span></p>
+        <div class="meta"><span data-lang="es">10% off activo</span><span data-lang="en">10% off live</span> →</div>
+      </a>
+      <a class="svc-card" href="https://mattos-medical-group.github.io/mattos-bhrt/">
+        <h3>BHRT — <span data-lang="es">Hormonas Bioidénticas</span><span data-lang="en">Bioidentical Hormones</span></h3>
+        <p><span data-lang="es">Reduce síntomas de menopausia y andropausia. Aumenta libido, energía, masa muscular y claridad mental.</span><span data-lang="en">Reduces menopause and andropause symptoms. Boosts libido, energy, lean muscle mass, and mental clarity.</span></p>
+        <div class="meta"><span data-lang="es">Aprenda más</span><span data-lang="en">Learn more</span> →</div>
+      </a>
+      <a class="svc-card" href="#regenerativa" id="regenerativa">
+        <h3><span data-lang="es">Medicina Regenerativa</span><span data-lang="en">Regenerative Medicine</span></h3>
+        <p><span data-lang="es">Exosomas, PRP, microneedling con PRP y PDO threads. Produce colágeno y repara tendones, ligamentos, cartílago y músculos sin cirugía.</span><span data-lang="en">Exosomes, PRP, PRP microneedling, and PDO threads. Build collagen and repair tendons, ligaments, cartilage, and muscle without surgery.</span></p>
+        <div class="meta"><span data-lang="es">Aprende más</span><span data-lang="en">Learn more</span> →</div>
+      </a>
+      <a class="svc-card" href="#aesthetics">
+        <h3><span data-lang="es">Estética &amp; Inyectables</span><span data-lang="en">Aesthetic &amp; Injectables</span></h3>
+        <p><span data-lang="es">Botox®, Juvederm®, Restylane®, Radiesse® y rellenos dérmicos. Microneedling con PRP y lifting con hilos PDO.</span><span data-lang="en">Botox®, Juvederm®, Restylane®, Radiesse® and dermal fillers. PRP microneedling and PDO thread lift.</span></p>
+        <div class="meta"><span data-lang="es">Tratamientos</span><span data-lang="en">Treatments</span> →</div>
+      </a>
+      <a class="svc-card" href="https://mattos-medical-group.github.io/mattos-weightloss/" id="peso">
+        <h3><span data-lang="es">Pérdida de Peso Médica</span><span data-lang="en">Medical Weight Loss</span></h3>
+        <p><span data-lang="es">Programa supervisado con análisis de sangre, péptidos GLP-1, y plan de nutrición personalizado. Resultados sostenibles.</span><span data-lang="en">Supervised program with blood panels, GLP-1 peptides, and personalized nutrition plan. Sustainable results.</span></p>
+        <div class="meta"><span data-lang="es">Aprenda más</span><span data-lang="en">Learn more</span> →</div>
+      </a>
+      <a class="svc-card" href="https://mattos-medical-group.github.io/mmg-supplementservice-finder/" target="_blank" rel="noopener">
+        <h3><span data-lang="es">Buscador de Suplementos</span><span data-lang="en">Supplement Finder</span></h3>
+        <p><span data-lang="es">Encuentra el suplemento correcto para tu meta de salud — línea Mattos y medicina china tradicional.</span><span data-lang="en">Find the right supplement for your health goal — Mattos line and traditional Chinese medicine.</span></p>
+        <div class="meta"><span data-lang="es">Abrir buscador</span><span data-lang="en">Open finder</span> ↗</div>
+      </a>
+      <a class="svc-card" href="https://mattos-medical-group.github.io/mattos-cognitiva/">
+        <h3><span data-lang="es">Salud Cognitiva</span><span data-lang="en">Cognitive Health</span></h3>
+        <p><span data-lang="es">Niebla mental, olvidos, falta de enfoque — programa integrador de BHRT + IV Brain Boost + suplementos.</span><span data-lang="en">Brain fog, forgetfulness, lost focus — integrative BHRT + IV Brain Boost + supplements program.</span></p>
+        <div class="meta"><span data-lang="es">Aprenda más</span><span data-lang="en">Learn more</span> →</div>
+      </a>
+      <a class="svc-card" href="#accidentes" id="accidentes">
+        <h3><span data-lang="es">Rehabilitación de Accidentes</span><span data-lang="en">Accident Rehabilitation</span></h3>
+        <p><span data-lang="es">Evaluación por un doctor especializado en lesiones de auto y motocicleta. Aceptamos PIP. No esperes.</span><span data-lang="en">Evaluation by a doctor specialized in auto and motorcycle injuries. PIP accepted. Don't delay.</span></p>
+        <div class="meta"><span data-lang="es">PIP aceptado</span><span data-lang="en">PIP accepted</span> →</div>
+      </a>
+      <a class="svc-card" href="#alergias">
+        <h3><span data-lang="es">Tratamiento de Alergias</span><span data-lang="en">Allergy Treatment</span></h3>
+        <p><span data-lang="es">Gotero IV para alivio rápido de congestión sinusal e inflamación. Sentirás alivio en menos de una hora.</span><span data-lang="en">IV drip for fast relief of sinus pressure and inflammation. Relief in under an hour.</span></p>
+        <div class="meta"><span data-lang="es">Alivio rápido</span><span data-lang="en">Fast relief</span> →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="section">
+  <div class="section-inner reveal">
+    <h2><span data-lang="es">Lo que Dicen Nuestros <em>Pacientes.</em></span><span data-lang="en">What Our Patients <em>Say.</em></span></h2>
+    <div class="tst-grid reveal-stagger">
+      <div class="tst">
+        <div class="tst-quote"><span data-lang="es">Mi esposo y yo fuimos por primera vez hace unas semanas. Fue una bocanada de aire fresco. El Dr. Kenn se tomó el tiempo de explicarme mis análisis en términos que pude entender. Nos sentimos en familia.</span><span data-lang="en">My husband and I went for the first time a few weeks ago. It was a breath of fresh air. Dr. Kenn took the time to explain my labs in terms I could truly understand. We felt like family.</span></div>
+        <div class="tst-stars">★★★★★</div>
+        <div class="tst-author">Jamie O.</div>
+      </div>
+      <div class="tst">
+        <div class="tst-quote"><span data-lang="es">Tenía ansiedad muy fuerte y vine para una sesión de acupuntura. ¡Salí sintiéndome completamente nueva! Definitivamente tienen una clienta para siempre.</span><span data-lang="en">I had terrible anxiety and came in for an acupuncture treatment. I walked out feeling brand new! They definitely have a forever customer with me.</span></div>
+        <div class="tst-stars">★★★★★</div>
+        <div class="tst-author">Maria R.</div>
+      </div>
+      <div class="tst">
+        <div class="tst-quote"><span data-lang="es">Excelente equipo, todos te hacen sentir como en casa. Gracias por el maravilloso tratamiento.</span><span data-lang="en">Great staff — everyone makes you feel at home. Thank you for the wonderful treatment.</span></div>
+        <div class="tst-stars">★★★★★</div>
+        <div class="tst-author">Daylen C.</div>
+      </div>
+      <div class="tst">
+        <div class="tst-quote"><span data-lang="es">Hace un mes fui a Mattos Medical Group y la verdad cambió mi vida y mi salud. Sus doctores y el personal son súper amables. Lo recomiendo a todos.</span><span data-lang="en">A month ago I went to Mattos Medical Group and it changed my life and my health. The doctors and staff are super friendly. I recommend it to all.</span></div>
+        <div class="tst-stars">★★★★★</div>
+        <div class="tst-author">Abner D.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section alt" id="faq">
+  <div class="section-narrow reveal">
+    <div class="eyebrow">FAQ</div>
+    <h2><span data-lang="es">Preguntas <em>Frecuentes.</em></span><span data-lang="en">Frequently <em>Asked.</em></span></h2>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q"><span><span data-lang="es">¿Por qué las opciones naturales son mejores que la cirugía?</span><span data-lang="en">Why are natural options better than surgery?</span></span><svg class="faq-chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><span data-lang="es">La cirugía es invasiva y consume mucho tiempo. Es muy dura para personas mayores y puede significar el fin de la carrera de un atleta. Las opciones naturales no son invasivas, son más amables con el cuerpo y suelen dar una recuperación más rápida.</span><span data-lang="en">Surgery is incredibly invasive and time-consuming. It is hard on older individuals and can mean the end of an athlete's career. Natural options are non-invasive, much easier on the body, and often lead to faster recovery.</span></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span><span data-lang="es">¿Aceptan seguro médico?</span><span data-lang="en">Do you accept insurance?</span></span><svg class="faq-chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><span data-lang="es">Sí, muchos tratamientos están cubiertos por algunas aseguradoras. Llama y verificamos contigo si tu plan cubre el tratamiento que necesitas. También ofrecemos planes de pago efectivo.</span><span data-lang="en">Yes, most of our treatments are covered by some insurances. Call us and we'll verify whether your plan covers the treatment you need. We also offer cash-pay plans.</span></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span><span data-lang="es">¿Qué enfermedades autoinmunes pueden tratarse?</span><span data-lang="en">What autoimmune diseases can be treated?</span></span><svg class="faq-chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><span data-lang="es">Muchas condiciones autoinmunes pueden tratarse, incluyendo lupus, artritis reumatoide y fibromialgia, entre otras.</span><span data-lang="en">Many autoimmune conditions can be treated, including lupus, rheumatoid arthritis, and fibromyalgia, among others.</span></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span><span data-lang="es">¿Qué edades pueden recibir tratamiento?</span><span data-lang="en">What age group needs treatment most?</span></span><svg class="faq-chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><span data-lang="es">Todas las edades deberían considerar el tratamiento. Las lesiones jóvenes pueden generar dolor crónico de por vida si se ignoran. Para los mayores, el tratamiento es esencial para vivir cómodamente y evitar cirugías peligrosas.</span><span data-lang="en">All ages should consider treatment. Untreated injuries in youth can lead to lifelong chronic pain. For older patients, treatment helps ensure comfortable living and avoids surgeries that grow more dangerous with age.</span></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span><span data-lang="es">¿Su equipo habla español?</span><span data-lang="en">Does your team speak Spanish?</span></span><svg class="faq-chev" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <div class="faq-a"><span data-lang="es">¡Sí! Todo el equipo de Mattos Medical Group habla español. Llámanos hoy para tu consulta gratuita en español.</span><span data-lang="en">Yes! Our entire team speaks Spanish. Call us today for a free consultation in Spanish or English.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT BAND ── -->
+<section class="contact" id="contacto">
+  <div class="eyebrow"><span data-lang="es">Empieza hoy</span><span data-lang="en">Start today</span></div>
+  <h2><span data-lang="es">Reserva tu <em>Consulta Gratuita.</em></span><span data-lang="en">Book your <em>Free Consult.</em></span></h2>
+  <p class="lead"><span data-lang="es">Habla con un miembro bilingüe de nuestro equipo. 30 minutos, sin compromiso.</span><span data-lang="en">Talk to a bilingual member of our team. 30 minutes, no commitment.</span></p>
+  <div class="contact-lines">
+    <span><a href="tel:+18138712950">813.871.2950</a></span>
+    <span><a href="/cdn-cgi/l/email-protection#731e1207071c001e16171a10121f14011c060333141e121a1f5d101c1e"><span class="__cf_email__" data-cfemail="a9c4c8ddddc6dac4cccdc0cac8c5cedbc6dcd9e9cec4c8c0c587cac6c4">[email&#160;protected]</span></a></span>
+    <span>8315 N. Saulray St., Tampa, FL 33604</span>
+  </div>
+  <a class="cta-primary" href="tel:+18138712950"><span data-lang="es">Llama ahora</span><span data-lang="en">Call now</span></a>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot">
+      <img class="foot-logo" src="mmg-logo.png" alt="MMG">
+      <div class="foot-tagline"><span data-lang="es">Medicina Regenerativa · Tampa, FL</span><span data-lang="en">Regenerative Medicine · Tampa, FL</span></div>
+      <p><span data-lang="es">Cuidando familias en Tampa desde 1997. Tratamientos honestos, basados en ciencia y centrados en ti.</span><span data-lang="en">Caring for Tampa families since 1997. Honest, science-based treatments centered on you.</span></p>
+    </div>
+    <div class="foot">
+      <h4><span data-lang="es">Servicios</span><span data-lang="en">Services</span></h4>
+      <a href="#iv">IV Therapy</a>
+      <a href="https://mattos-medical-group.github.io/mattos-bhrt/">BHRT</a>
+      <a href="#regenerativa"><span data-lang="es">Regenerativa</span><span data-lang="en">Regenerative</span></a>
+      <a href="#aesthetics"><span data-lang="es">Estética</span><span data-lang="en">Aesthetic</span></a>
+      <a href="#peso"><span data-lang="es">Pérdida de Peso</span><span data-lang="en">Weight Loss</span></a>
+      <a href="#accidentes"><span data-lang="es">Accidentes</span><span data-lang="en">Accidents</span></a>
+    </div>
+    <div class="foot">
+      <h4><span data-lang="es">Recursos</span><span data-lang="en">Resources</span></h4>
+      <a href="https://mattos-medical-group.github.io/mattos-cognitiva/"><span data-lang="es">Salud Cognitiva</span><span data-lang="en">Cognitive Health</span></a>
+      <a href="https://mattos-medical-group.github.io/mattos-weightloss/"><span data-lang="es">Pérdida de Peso</span><span data-lang="en">Weight Loss</span></a>
+      <a href="https://mattos-medical-group.github.io/mmg-supplementservice-finder/" target="_blank" rel="noopener"><span data-lang="es">Buscador de Suplementos</span><span data-lang="en">Supplement Finder</span></a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div class="foot">
+      <h4><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></h4>
+      <a href="tel:+18138712950">813.871.2950</a>
+      <a href="/cdn-cgi/l/email-protection#117c7065657e627c74757872707d76637e646151767c70787d3f727e7c"><span class="__cf_email__" data-cfemail="c0ada1b4b4afb3ada5a4a9a3a1aca7b2afb5b080a7ada1a9aceea3afad">[email&#160;protected]</span></a>
+      <a>8315 N. Saulray St.<br>Tampa, FL 33604</a>
+    </div>
+    <div class="foot">
+      <h4><span data-lang="es">Redes Sociales</span><span data-lang="en">Social</span></h4>
+      <a href="https://linko.page/mmg-social-media?s=url" target="_blank" rel="noopener" class="foot-qr" title="Escánealo para seguirnos">
+        <img src="mmg-social-qr.png" alt="QR — escánealo para seguirnos en todas las redes">
+      </a>
+      <span class="foot-qr-label"><span data-lang="es">Escánealo para seguirnos</span><span data-lang="en">Scan to follow us</span></span>
+      <a href="https://www.facebook.com/mattosmedicalgroup" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/mattosmedical" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@mattosmedicalgroup_fl" target="_blank">YouTube</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Mattos Medical Group. <span data-lang="es">Todos los derechos reservados.</span><span data-lang="en">All rights reserved.</span></span>
+    <span><span data-lang="es">Hecho con cuidado en Tampa.</span><span data-lang="en">Made with care in Tampa.</span></span>
+  </div>
+</footer>
+
+</div><!-- /.page-wrap -->
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// Bilingual toggle
+document.querySelectorAll('.lang-btn').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const set = btn.dataset.set;
+    document.body.classList.toggle('en', set === 'en');
+    document.querySelectorAll('.lang-btn').forEach((b) => b.classList.toggle('active', b === btn));
+    document.documentElement.lang = set;
+  });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach((q) => {
+  q.addEventListener('click', () => {
+    q.parentElement.classList.toggle('open');
+  });
+});
+// Reveal-on-scroll
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => io.observe(el));
+} else {
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => el.classList.add('in-view'));
+}
+</script>
+</body>
+</html>
