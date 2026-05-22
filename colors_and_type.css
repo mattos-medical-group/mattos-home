@@ -1,0 +1,273 @@
+/* ============================================================
+   MATTOS MEDICAL GROUP — DESIGN TOKENS
+   colors_and_type.css
+
+   Tokens extracted directly from the live landing pages:
+     • BHRT landing page.html
+     • index.html (Salud Cognitiva)
+     • supp finder wo evergreen.html
+   and the brand rules in MMG_Tech_Stack_and_Endpoints.txt.
+
+   Two faces of the brand:
+     1. NAVY / BLUE  — clinical, premium, landing pages, ads
+     2. WARM CREAM   — daily social ("Good Morning", beach Florida)
+
+   Import this file from any html artifact:
+     <link rel="stylesheet" href="colors_and_type.css">
+   ============================================================ */
+
+/* ---- WEBFONTS ----
+   Brand wordmark uses Trajan Pro (provided OTF/TTF in /fonts).
+   Production HTML uses Playfair Display + Source Sans 3 from Google.
+*/
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("fonts/TrajanPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trajan Pro";
+  src: url("fonts/TrajanPro-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300&family=Dancing+Script:wght@500;600;700&family=Caveat+Brush&display=swap");
+
+:root {
+  /* ── PRIMARY: navy / blue (clinical face) ───────────────── */
+  --mmg-navy:        #0b1e3d;   /* primary, deepest, hero backgrounds */
+  --mmg-navy-dark:   #081830;   /* darker variant, used in index.html */
+  --mmg-navy-mid:    #112847;   /* mid-tone for gradients */
+  --mmg-navy-light:  #1a3a6b;   /* lighter step inside hero gradients */
+  --mmg-blue:        #2678c0;   /* primary action / brand blue (logo) */
+  --mmg-blue-bright: #3d8fd4;   /* hover/active brighter step */
+  --mmg-blue-light:  #4a94d6;   /* accent on dark backgrounds */
+  --mmg-blue-pale:   #a8cce8;   /* tints, watermark accents, "Breathe Easy" headline */
+
+  /* ── NEUTRALS ──────────────────────────────────────────── */
+  --mmg-white:       #ffffff;
+  --mmg-off-white:   #f6f4ef;   /* page background, warm off-white */
+  --mmg-cream:       #eae6dc;   /* card surface, slightly warmer */
+  --mmg-border:      #ddd8cc;   /* hairline borders, warm grey */
+  --mmg-border-soft: #dbd7cf;
+  --mmg-text:        #2d3d50;   /* body copy, dark slate */
+  --mmg-text-dark:   #1e2d42;   /* alt body, deeper */
+  --mmg-text-muted:  #6b7a8d;   /* muted secondary text */
+  --mmg-text-soft:   #5a6a7e;   /* alt muted */
+
+  /* ── ACCENT (rarely used; brand has consolidated on navy/blue/cream).
+       Kept for back-compat with legacy gold-tone organic posts (e.g. older
+       "Good Morning" stories). New work should prefer --mmg-blue or --mmg-navy
+       as the warm-mode accent. */
+  --mmg-gold:        #c5a464;
+  --mmg-gold-soft:   #d6b97c;
+
+  /* ── SEMANTIC ─────────────────────────────────────────── */
+  --mmg-success:     #2f8a5b;
+  --mmg-warn:        #c98b25;
+  --mmg-danger:      #b94b3a;
+
+  /* ── SURFACES / OVERLAYS ──────────────────────────────── */
+  --mmg-surface-dark-1: rgba(255,255,255,0.06);   /* card on navy */
+  --mmg-surface-dark-2: rgba(255,255,255,0.10);   /* hovered card on navy */
+  --mmg-stroke-dark:    rgba(255,255,255,0.10);
+  --mmg-tint-blue:      rgba(38,120,192,0.08);    /* blue chip backgrounds */
+  --mmg-tint-blue-2:    rgba(38,120,192,0.15);
+
+  /* ── GRADIENTS (used in heroes, CTAs) ─────────────────── */
+  --mmg-grad-hero:   linear-gradient(160deg, #0b1e3d 0%, #112847 60%, #0d2d52 100%);
+  --mmg-grad-cta:    linear-gradient(135deg, #2678c0 0%, #4a94d6 100%);
+  --mmg-grad-dark:   linear-gradient(135deg, #0b1e3d 0%, #1a3a6b 100%);
+
+  /* ── RADII ────────────────────────────────────────────── */
+  --mmg-r-sm:   8px;
+  --mmg-r-md:  12px;        /* default card */
+  --mmg-r-lg:  16px;        /* form box, large card */
+  --mmg-r-xl:  20px;        /* hero badges */
+  --mmg-r-pill: 50px;       /* CTA buttons, chips */
+  --mmg-r-full: 9999px;
+
+  /* ── SHADOWS (warm-navy bias, never neutral black) ────── */
+  --mmg-shadow-xs: 0 4px 12px rgba(11,30,61,0.08);
+  --mmg-shadow-sm: 0 8px 20px rgba(11,30,61,0.08);
+  --mmg-shadow-md: 0 10px 28px rgba(11,30,61,0.10);
+  --mmg-shadow-lg: 0 12px 40px rgba(11,30,61,0.18);
+  --mmg-shadow-blue: 0 8px 28px rgba(38,120,192,0.35);   /* glow under CTAs */
+  --mmg-shadow-blue-lg: 0 12px 36px rgba(38,120,192,0.50);
+
+  /* ── SPACING SCALE (4px base) ─────────────────────────── */
+  --mmg-s-1: 4px;
+  --mmg-s-2: 8px;
+  --mmg-s-3: 12px;
+  --mmg-s-4: 16px;
+  --mmg-s-5: 20px;
+  --mmg-s-6: 24px;
+  --mmg-s-8: 32px;
+  --mmg-s-10: 40px;
+  --mmg-s-12: 48px;
+  --mmg-s-16: 64px;
+
+  /* ── TYPOGRAPHY ───────────────────────────────────────── */
+  --mmg-font-display: "DM Serif Display", "Playfair Display", Georgia, serif; /* signature high-contrast display — italic split-line is the signature */
+  --mmg-font-body:    "Source Sans 3", system-ui, sans-serif; /* body, UI, AND question-style headlines */
+  --mmg-font-brand:   "Trajan Pro", "Playfair Display", serif;/* logo wordmark only */
+  --mmg-font-script:  "Dancing Script", cursive;              /* daily organic posts (calm script) */
+  --mmg-font-brush:   "Caveat Brush", "Dancing Script", cursive; /* feminine / BHRT-style brush headlines */
+
+  /* sizes — landing-page scale */
+  --mmg-fs-hero:   clamp(30px, 7vw, 54px);
+  --mmg-fs-h1:     clamp(28px, 6vw, 48px);
+  --mmg-fs-h2:     clamp(22px, 5vw, 36px);
+  --mmg-fs-h3:     clamp(18px, 3.5vw, 24px);
+  --mmg-fs-lead:   clamp(15px, 3.5vw, 17px);
+  --mmg-fs-body:   16px;
+  --mmg-fs-sm:     14px;
+  --mmg-fs-xs:     12px;
+  --mmg-fs-eyebrow: 10px;       /* uppercase eyebrow / pill labels */
+
+  /* line heights */
+  --mmg-lh-tight:   1.10;
+  --mmg-lh-snug:    1.30;
+  --mmg-lh-normal:  1.65;
+  --mmg-lh-loose:   1.80;
+
+  /* letter spacing — the brand uses *wide* uppercase eyebrows everywhere */
+  --mmg-ls-eyebrow: 2.5px;
+  --mmg-ls-wide:    1.5px;
+
+  /* motion */
+  --mmg-ease-out:   cubic-bezier(0.16, 0.84, 0.44, 1);
+  --mmg-dur-fast:   0.15s;
+  --mmg-dur-base:   0.25s;
+  --mmg-dur-slow:   0.40s;
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   Used directly: write <h1>…</h1>, <p class="mmg-lead">, etc.
+   ============================================================ */
+
+.mmg-body,
+body.mmg {
+  font-family: var(--mmg-font-body);
+  background: var(--mmg-off-white);
+  color: var(--mmg-text);
+  font-size: var(--mmg-fs-body);
+  line-height: var(--mmg-lh-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADINGS — Playfair Display, navy by default */
+.mmg-h1, .mmg-hero-title {
+  font-family: var(--mmg-font-display);
+  font-weight: 900;
+  font-size: var(--mmg-fs-hero);
+  line-height: var(--mmg-lh-tight);
+  color: var(--mmg-navy);
+  letter-spacing: -0.01em;
+}
+/* Italic split-line "em" is a brand signature ("Breathe Easy.", "Renueva tu Energía") */
+.mmg-h1 em, .mmg-hero-title em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--mmg-blue-light);
+  display: block;
+}
+
+.mmg-h2 {
+  font-family: var(--mmg-font-display);
+  font-weight: 700;
+  font-size: var(--mmg-fs-h2);
+  line-height: var(--mmg-lh-snug);
+  color: var(--mmg-navy);
+}
+
+.mmg-h3 {
+  font-family: var(--mmg-font-display);
+  font-weight: 700;
+  font-size: var(--mmg-fs-h3);
+  color: var(--mmg-navy);
+}
+
+.mmg-eyebrow {
+  font-family: var(--mmg-font-body);
+  font-size: var(--mmg-fs-eyebrow);
+  font-weight: 700;
+  letter-spacing: var(--mmg-ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--mmg-blue);
+}
+
+.mmg-lead {
+  font-size: var(--mmg-fs-lead);
+  font-weight: 300;
+  line-height: var(--mmg-lh-normal);
+  color: var(--mmg-text-muted);
+}
+
+.mmg-p {
+  font-size: var(--mmg-fs-body);
+  line-height: var(--mmg-lh-normal);
+  color: var(--mmg-text);
+}
+
+.mmg-small {
+  font-size: var(--mmg-fs-sm);
+  color: var(--mmg-text-muted);
+}
+
+.mmg-mono {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 13px;
+  color: var(--mmg-text);
+}
+
+/* Brand wordmark — Trajan Pro */
+.mmg-wordmark {
+  font-family: var(--mmg-font-brand);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--mmg-blue);
+}
+
+/* QUESTION HEADLINE — bold sans on a heavy background.
+   Used on paid ads that lead with a direct question
+   ("¿Te sientes cansada, sin energía?"). Distinct from
+   .mmg-h1 / .mmg-hero-title which use Playfair italic split-line. */
+.mmg-question {
+  font-family: var(--mmg-font-body);
+  font-weight: 700;
+  font-size: clamp(24px, 5.5vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  color: #fff;            /* default; navy on cream surfaces */
+  text-transform: none;   /* sentence case — leave the ¿? marks visible */
+}
+.mmg-question em,
+.mmg-question b {
+  color: var(--mmg-blue-light);
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* BRUSH HEADLINE — chunky handwritten, for feminine BHRT / aesthetic posts.
+   Heavier than .mmg-script. Use sparingly. */
+.mmg-brush {
+  font-family: var(--mmg-font-brush);
+  font-weight: 400;            /* Caveat Brush only ships one weight */
+  font-size: clamp(28px, 6vw, 46px);
+  line-height: 1.05;
+  letter-spacing: 0.5px;
+  color: #fff;                  /* default; navy or blue on cream */
+}
+
+/* Script accent (daily organic posts: "Good Morning", "Buenos Días") */
+.mmg-script {
+  font-family: var(--mmg-font-script);
+  font-weight: 600;
+  color: var(--mmg-navy);  /* default; small taglines often use --mmg-blue */
+}
